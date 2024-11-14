@@ -86,3 +86,22 @@ public class GateWayServiceApplication {
 //        return new CorsWebFilter(source);
 //    }
 }
+
+
+spring:
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://${KC_HOST:localhost}:${KC_PORT:8080}/auth/realms/rental_cars
+      client:
+        registration:
+          rental-cars-client:
+            provider: keycloak
+            authorization-grant-type: client_credentials
+            scope: openid
+            client-id: rental-cars-client
+            client-secret: Nr4m2n42bpjsikbFUAk1j6QkuITkfHWF
+        provider:
+          keycloak:
+            issuer-uri: http://${KC_HOST:localhost}:${KC_PORT:8080}/auth/realms/rental_cars
